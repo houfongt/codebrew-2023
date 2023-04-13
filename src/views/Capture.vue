@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <video v-show="!isPhotoTaken" ref="camera" class="w-full block" autoplay playsinline muted></video>
+        <video v-show="!isPhotoTaken" ref="camera" class="w-full h-full block" autoplay playsinline muted></video>
         <div class="absolute top-5 left-5 z-50">
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4">Magic Meal</p>
         </div>
