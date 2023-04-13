@@ -44,7 +44,9 @@ export default {
         createCameraElement() {
             const constraints = (window.constraints = {
 			    audio: false,
-				video: true
+				video: {
+                    facingMode: 'user'
+                }
 			});
 			navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 				this.$refs.camera.srcObject = stream;
