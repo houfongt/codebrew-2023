@@ -9,12 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^4.7.3",
+    "@capacitor/core": "^4.7.3",
+    "@capacitor/ios": "^4.7.3",
     "@headlessui/vue": "^1.7.13",
     "typescript": "^5.0.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.7.3",
     "@vitejs/plugin-vue": "^4.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
