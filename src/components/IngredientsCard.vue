@@ -23,7 +23,7 @@
         </div>
         <div >
             <ul>
-                <li v-for="item in items" :key="item.id" class="flex flex-row justify-between items-center my-4 shadow-xl rounded-lg px-4 bg-white">
+                <li v-for="item in items" :key="item.id" class="flex flex-row justify-between items-center my-[8px] shadow-xl rounded-lg px-4 bg-white">
                     <div class="flex flex-row justify-start items-center py-4">
                         {{ item.title }}
                     </div>
