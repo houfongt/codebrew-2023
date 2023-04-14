@@ -21,7 +21,7 @@
                 </svg>
             </button>
         </div>
-        <div class="p-8">
+        <div class="p-4 md:p-8">
             <ul>
                 <li v-for="item in items" :key="item.id" class="flex flex-row justify-between items-center my-3">
                     <div class="flex flex-row justify-start items-center">
