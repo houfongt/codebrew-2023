@@ -79,9 +79,15 @@ export default {
             }
       
             this.isPhotoTaken = !this.isPhotoTaken;
-      
+            const canvas = document.querySelector("canvas")
             const context = this.$refs.canvas.getContext('2d');
-            context.drawImage(this.$refs.camera, 0, 0, this.$refs.camera.width, this.$refs.camera.height);
+            canvas.height = this.$refs.camera.videoHeight;
+            canvas.width = this.$refs.camera.videoWidth;
+            context.drawImage(this.$refs.camera, 0, 0);
+            canvas.toBlob(blob=> {
+                console.log(blob);
+                storage.push(blob);
+            });
         },
         
     }
