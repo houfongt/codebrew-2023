@@ -97,7 +97,9 @@ export default {
             console.log(canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
             canvas.toBlob(async (blob)=> {
                 console.log(blob);
-                this.$http.post('https://assets.cgps.ch/', blob);
+                this.$http.post('https://aesthetic-marshmallow-71934e.netlify.app/.netlify/functions/orc').then((msg) => {
+                    console.log(msg);
+                })
             });
         },
         
