@@ -1,6 +1,7 @@
 <template>
     <div class="fixed w-full bottom-0" style="margin-top: calc(env(safe-area-inset-top)">
         <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block" autoplay playsinline muted></video>
+        <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full md:w-full md:h-screen block"></canvas>
         <div class="absolute top-5 left-5 z-50">
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Magic Meal</p>
         </div>
@@ -10,7 +11,7 @@
             </svg>
         </div>
         <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <button class="rounded-full border-white border-solid border-8 p-4">
+            <button class="rounded-full border-white border-solid border-8 p-4" v-on:click="takePhoto()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
@@ -68,6 +69,20 @@ export default {
 				track.stop();
 			});
         },
+        takePhoto() {
+            if(!this.isPhotoTaken) {
+                this.isShotPhoto = true;
+                const FLASH_TIMEOUT = 50;
+                setTimeout(() => {
+                    this.isShotPhoto = false;
+                }, FLASH_TIMEOUT);
+            }
+      
+            this.isPhotoTaken = !this.isPhotoTaken;
+      
+            const context = this.$refs.canvas.getContext('2d');
+            context.drawImage(this.$refs.camera, 0, 0, screen.width, screen.height);
+    },
     }
 }
 </script>
