@@ -94,7 +94,7 @@ export default {
             canvas.width = this.$refs.camera.videoWidth;
             context.drawImage(this.$refs.camera, 0, 0);
             this.isVisable = true
-            canvas.toBlob(blob=> {
+            canvas.toBlob(async (blob)=> {
                 console.log(blob);
                 this.$http.post('https://codebrew.cgps.ch/upload', blob);
             });
