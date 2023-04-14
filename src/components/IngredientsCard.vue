@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed shadow-lg bottom-0 left-0 right-0 w-full h-5/6 flex flex-col justify-start items-center transition-all ease-in-out duration-300 z-50" id="safeArea" :class="isOpen ? '' : 'translate-y-[30vh]'">
+    <div class="fixed shadow-lg bottom-0 left-0 right-0 w-full h-full flex flex-col justify-start items-center transition-all ease-in-out duration-300 z-50" id="safeArea" :class="isOpen ? '' : 'translate-y-[45vh]'">
         <button class="bg-white outline-0 shadow-2xl border-t-2 h-20 border-l-2 border-r-2 border-gray-300 flex justify-center items-center w-full rounded-t-full" v-on:click="isOpen ? isOpen = false : isOpen = true" >
             <div :class="isOpen ? 'hidden' : ''"> 
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
