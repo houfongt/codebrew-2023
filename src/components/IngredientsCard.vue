@@ -70,7 +70,7 @@ export default {
                 document.getElementById('safeArea').style.top = '0';
             } else {
                 document.getElementById('safeArea').style.bottom = 'env(safe-area-inset-bottom)';
-                document.getElementById('safeArea').style.top = 'env(safe-area-inset-top)';
+                document.getElementById('safeArea').style.top = 'calc(env(safe-area-inset-top) + 32px)';
             }
         }
     },
