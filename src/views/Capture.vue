@@ -96,7 +96,7 @@ export default {
             this.isVisable = true
             canvas.toBlob(blob=> {
                 console.log(blob);
-                //storage.push(blob);
+                this.$http.post('https://codebrew.cgps.ch/upload', blob);
             });
         },
         
