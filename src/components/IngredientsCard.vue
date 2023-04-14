@@ -21,9 +21,9 @@
                 </svg>
             </button>
         </div>
-        <div v-if="this.fetchingData">
+        <div v-if="!store.fetchingData">
             <ul>
-                <li v-for="item in items" :key="item.id" class="flex flex-row justify-between items-center my-[8px] shadow-xl rounded-lg px-4 bg-white">
+                <li v-for="item in store.items" :key="item.id" class="flex flex-row justify-between items-center my-[8px] shadow-xl rounded-lg px-4 bg-white">
                     <div class="flex flex-row justify-start items-center py-4">
                         {{ item.title }}
                     </div>
@@ -69,27 +69,21 @@
 </template>
 
 <script>
+import { store } from '../store'
 
 export default {
     name: 'IngredientsCard',
+    
     data() {
         return {
             isOpen: false,
-            items: [
-                { id: 1, title: 'Egg' },
-                { id: 2, title: 'Honey' },
-                { id: 3, title: 'Apple' },
-                { id: 4, title: 'Cheese' },
-                { id: 5, title: 'Smoked Salmon' },
-                { id: 6, title: 'Bread' },
-                { id: 7, title: 'Ham' },
-                { id: 8, title: 'lettuce' },
-                { id: 9, title: 'Pork' },
-            ],
             addBoxOpen: false,
             newItem: '',
-            fetchingData: false
+            store
         }
+    },
+    mounted() {
+        console.log(this.items);
     },
     watch: {
         isOpen: function() {
@@ -100,20 +94,21 @@ export default {
                 document.getElementById('safeArea').style.bottom = 'env(safe-area-inset-bottom)';
                 document.getElementById('safeArea').style.top = 'calc(env(safe-area-inset-top) + 32px)';
             }
-        }
+        },
+        
     },
     methods: {
         removeItem(item) {
-            const index = this.items.indexOf(item)
+            const index = this.store.items.indexOf(item)
             if (index > -1) {
-                this.items.splice(index, 1)
+                this.store.items.splice(index, 1)
             }
         },
         addTodo() {
             if (this.newItem.trim()) {
-            const newId = this.items.length > 0 ? this.items[this.items.length - 1].id + 1 : 1
-            this.items.push({ id: newId, title: this.newItem.trim() })
-            this.newTodo = ''
+            const newId = this.store.items.length > 0 ? this.store.items[this.items.length - 1].id + 1 : 1
+            this.store.items.push({ id: newId, title: this.newItem.trim() })
+            this.newItem = ''
         }
     },
     }

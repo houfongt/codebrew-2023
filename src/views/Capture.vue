@@ -25,6 +25,7 @@
 
 <script>
 import IngredientsCard from '../components/IngredientsCard.vue'
+import { store } from '../store'
 
 export default {
     name: 'Capture',
@@ -38,7 +39,8 @@ export default {
             isShotPhoto: false,
             isLoading: false,
             link: '#',
-            isVisable: false
+            isVisable: false,
+            store
         }
     },
     mounted() {
@@ -99,8 +101,13 @@ export default {
                 console.log(blob);
                 this.$http.get('https://aesthetic-marshmallow-71934e.netlify.app/.netlify/functions/orc').then((msg) => {
                     console.log(msg);
+                    
                 })
             });
+            setTimeout(() => {
+                this.store.items = [{ id: 1, title: 'Test' }]
+                this.store.fetchingData = false
+            }, 5000);
         },
         
     }
