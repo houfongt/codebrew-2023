@@ -97,7 +97,7 @@ export default {
             console.log(canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
             canvas.toBlob(async (blob)=> {
                 console.log(blob);
-                this.$http.post('../../../codebrew-backend/upload.js', blob);
+                this.$http.post('https://codebrew.cgps.ch/upload', blob);
             });
         },
         
