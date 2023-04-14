@@ -81,7 +81,7 @@ export default {
             this.isPhotoTaken = !this.isPhotoTaken;
       
             const context = this.$refs.canvas.getContext('2d');
-            context.drawImage(this.$refs.camera, 0, 0, screen.width, screen.height);
+            context.drawImage(this.$refs.camera, 0, 0, screen.height, screen.width);
     },
     }
 }
