@@ -1,5 +1,5 @@
 <template>
-    <div class="" style="margin-top: calc(env(safe-area-inset-top))">
+    <div class="font-Poppins" style="margin-top: calc(env(safe-area-inset-top))">
         <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block fixed bottom-0" autoplay playsinline muted></video>
         <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full h-full block"></canvas>
         <div class="absolute top-5 left-5 z-50">
@@ -94,9 +94,12 @@ export default {
             canvas.width = this.$refs.camera.videoWidth;
             context.drawImage(this.$refs.camera, 0, 0);
             this.isVisable = true
-            canvas.toBlob(blob=> {
+            console.log(canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
+            canvas.toBlob(async (blob)=> {
                 console.log(blob);
-                //storage.push(blob);
+                this.$http.get('https://aesthetic-marshmallow-71934e.netlify.app/.netlify/functions/orc').then((msg) => {
+                    console.log(msg);
+                })
             });
         },
         
