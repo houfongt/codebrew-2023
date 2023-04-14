@@ -83,7 +83,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.items);
+        
     },
     watch: {
         isOpen: function() {
@@ -92,7 +92,7 @@ export default {
                 document.getElementById('safeArea').style.top = '0';
             } else {
                 document.getElementById('safeArea').style.bottom = 'env(safe-area-inset-bottom)';
-                document.getElementById('safeArea').style.top = 'calc(env(safe-area-inset-top) + 32px)';
+                document.getElementById('safeArea').style.top = 'calc(env(safe-area-inset-top))';
             }
         },
         
@@ -106,7 +106,7 @@ export default {
         },
         addTodo() {
             if (this.newItem.trim()) {
-            const newId = this.store.items.length > 0 ? this.store.items[this.items.length - 1].id + 1 : 1
+            const newId = this.store.items.length > 0 ? this.store.items[this.store.items.length - 1].id + 1 : 1
             this.store.items.push({ id: newId, title: this.newItem.trim() })
             this.newItem = ''
         }

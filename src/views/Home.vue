@@ -1,5 +1,5 @@
 <template>
-    <Title />
+    <Title title="Meal Magic" />
     <div class="flex flex-col justify-between items-center font-Poppins">
         <ul class="my-[37px] w-full px-8">
             <li class="bg-white shadow-xl rounded-2xl p-8 flex flex-row justify-evenly items-center">

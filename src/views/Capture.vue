@@ -2,8 +2,15 @@
     <div class="font-Poppins" style="margin-top: calc(env(safe-area-inset-top))">
         <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block fixed bottom-0" autoplay playsinline muted></video>
         <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full h-full block"></canvas>
-        <div class="absolute top-5 left-5 z-50">
+        <div class="absolute top-5 left-5 z-20">
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Meal Magic</p>
+        </div>
+        <div class="absolute top-5 right-5 z-50">
+            <button @click="toggleCamera(); isVisable = false" class="bg-black/50 rounded-xl py-2 px-4 mt-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6" >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
         </div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-24 h-24">
@@ -17,7 +24,7 @@
                 </svg>
             </button>
         </div>
-        <div class="fixed shadow-lg bottom-0 left-0 right-0 w-full h-5/6 flex flex-col justify-start items-center transition-all ease-in-out duration-300 z-50" id="safeArea" :class="isVisable ? '' : 'translate-y-[75vh]'">
+        <div class="fixed shadow-lg bottom-0 left-0 right-0 w-full h-5/6 flex flex-col justify-start items-center transition-all ease-in-out duration-300 z-30" id="safeArea" :class="isVisable ? '' : 'translate-y-[75vh]'">
             <IngredientsCard />
         </div>
     </div>
@@ -42,7 +49,8 @@ export default {
             isLoading: false,
             link: '#',
             isVisable: false,
-            store
+            store,
+            cameraUnavailble: false
         }
     },
     mounted() {
@@ -54,7 +62,11 @@ export default {
                 this.isCameraOpen = false;
                 this.isPhotoTaken = false;
                 this.isShotPhoto = false;
-                this.stopCameraStream();
+                if (this.cameraUnavailble !== true) {
+                    this.stopCameraStream();
+                }
+                this.$router.push('/')
+                this.store.fetchingData = true
             } else {
                 this.isCameraOpen = true;
                 this.createCameraElement();
@@ -73,6 +85,8 @@ export default {
 				this.$refs.camera.srcObject = stream;
 			}).catch(error => {
 				this.isVisable = true
+                this.store.fetchingData = false
+                this.cameraUnavailble = true
 			});
         },
         stopCameraStream() {
@@ -108,15 +122,17 @@ export default {
                        const functions = getFunctions();
                        const orc = httpsCallable(functions, 'orc');
                        orc({ text: url }).then((result) => {
-                         console.log(result.items);   
+                         console.log(result.data.items);
+                         this.store.fetchingData = false
+                         this.store.items = result.data.items
                         })
                     });
                 }) 
             });
         
             setTimeout(() => {
-                this.store.items = [{ id: 1, title: 'Test' }]
-                this.store.fetchingData = false
+                
+                
             }, 5000);
         },
         makeid(length) {
