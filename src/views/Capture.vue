@@ -1,5 +1,5 @@
 <template>
-    <div class="" style="margin-top: calc(env(safe-area-inset-top))">
+    <div class="font-Poppins" style="margin-top: calc(env(safe-area-inset-top))">
         <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block fixed bottom-0" autoplay playsinline muted></video>
         <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full h-full block"></canvas>
         <div class="absolute top-5 left-5 z-50">
