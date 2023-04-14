@@ -1,5 +1,5 @@
 <template>
-    <div class="relative" style="padding-top: calc(env(safe-area-inset-top) + 32px )">
+    <div class="fixed w-full bottom-0" style="padding-top: calc(env(safe-area-inset-top) + 32px )">
         <video v-show="!isPhotoTaken" ref="camera" class="w-full h-full md:w-full md:h-screen block" autoplay playsinline muted></video>
         <div class="absolute top-5 left-5 z-50">
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4">Magic Meal</p>

@@ -8,6 +8,7 @@ use_frameworks!
 # Requires CocoaPods 1.6 or newer
 install! 'cocoapods', :disable_input_output_paths => true
 
+
 def capacitor_pods
   pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
   pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
@@ -19,6 +20,8 @@ target 'App' do
   # Add your Pods here
 end
 
+# Example post install to disable bitcode for pods
 post_install do |installer|
   assertDeploymentTarget(installer)
 end
+
