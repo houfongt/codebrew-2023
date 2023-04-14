@@ -10,21 +10,18 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/macbook/Keys/codebrew-202
 
 # Initialize the client
 client = vision.ImageAnnotatorClient()
+image = vision.Image()
 
 # Define the URL of the JPEG image
-image_url = 'https://www.snexplores.org/wp-content/uploads/2022/10/1440_SS_fruit_feat-1030x580.jpg'
+image_url = 'https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg'
 
-# Download the image data from the URL
-response = requests.get(image_url)
-image_content = response.content
+response = client.annotate_image({
+ 'image': {'source': {'image_uri': image_url}},
+ 'features': [{'type_': vision.Feature.Type.OBJECT_LOCALIZATION, 'max_results': 20},
+ {'type_': vision.Feature.Type.DOCUMENT_TEXT_DETECTION}
+  ]
+})
 
-# Create a Vision API image object from the image data
-image = types.Image(content=image_content)
-
-# Perform label detection on the image
-response = client.label_detection(image=image)
-labels = response.label_annotations
-
-# Print the labels
-for label in labels:
-    print(label.description)
+lo_annotations = response.localized_object_annotations
+for obj in lo_annotations:
+    print(obj.name)
