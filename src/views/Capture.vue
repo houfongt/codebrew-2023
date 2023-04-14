@@ -1,7 +1,7 @@
 <template>
-    <div class="fixed w-full bottom-0" style="margin-top: calc(env(safe-area-inset-top)">
-        <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block" autoplay playsinline muted></video>
-        <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full md:w-full md:h-screen block"></canvas>
+    <div class="" style="margin-top: calc(env(safe-area-inset-top)">
+        <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block fixed bottom-0" autoplay playsinline muted></video>
+        <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full h-screen block"></canvas>
         <div class="absolute top-5 left-5 z-50">
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Magic Meal</p>
         </div>
