@@ -3,7 +3,7 @@
         <video v-show="!isPhotoTaken" ref="camera" class="w-full md:w-full md:h-screen block fixed bottom-0" autoplay playsinline muted></video>
         <canvas v-show="isPhotoTaken" id="photoTaken" ref="canvas" class="w-full h-full block"></canvas>
         <div class="absolute top-5 left-5 z-50">
-            <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Magic Meal</p>
+            <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Meal Magic</p>
         </div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-24 h-24">
@@ -25,7 +25,9 @@
 
 <script>
 import IngredientsCard from '../components/IngredientsCard.vue'
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { store } from '../store'
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 export default {
     name: 'Capture',
@@ -70,7 +72,7 @@ export default {
 			navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 				this.$refs.camera.srcObject = stream;
 			}).catch(error => {
-				alert("May the browser didn't support or there is some errors.");
+				this.isVisable = true
 			});
         },
         stopCameraStream() {
@@ -96,20 +98,38 @@ export default {
             canvas.width = this.$refs.camera.videoWidth;
             context.drawImage(this.$refs.camera, 0, 0);
             this.isVisable = true
-            console.log(canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
             canvas.toBlob(async (blob)=> {
-                console.log(blob);
-                this.$http.get('https://aesthetic-marshmallow-71934e.netlify.app/.netlify/functions/orc').then((msg) => {
-                    console.log(msg);
-                    
-                })
+                const storage = getStorage();
+                let path = `codebrew-2023-orc/`;
+                const fileName = this.makeid(12);
+                console.log(fileName);
+                uploadBytes(ref(storage, `${path}/${fileName}`), blob).then((snapshot) => {
+                    getDownloadURL(ref(storage, `${path}/${fileName}`)).then(async (url) => {
+                       const functions = getFunctions();
+                       const orc = httpsCallable(functions, 'orc');
+                       orc({ text: url }).then((result) => {
+                         console.log(result.items);   
+                        })
+                    });
+                }) 
             });
+        
             setTimeout(() => {
                 this.store.items = [{ id: 1, title: 'Test' }]
                 this.store.fetchingData = false
             }, 5000);
         },
-        
+        makeid(length) {
+            let result = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const charactersLength = characters.length;
+            let counter = 0;
+            while (counter < length) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                counter += 1;
+            }
+            return result;
+        }
     }
 }
 </script>
