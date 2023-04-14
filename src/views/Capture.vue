@@ -17,19 +17,28 @@
                 </svg>
             </button>
         </div>
+        <div class="fixed shadow-lg bottom-0 left-0 right-0 w-full h-5/6 flex flex-col justify-start items-center transition-all ease-in-out duration-300 z-50" id="safeArea" :class="isVisable ? '' : 'translate-y-[75vh]'">
+            <IngredientsCard />
+        </div>
     </div>
 </template>
 
 <script>
+import IngredientsCard from '../components/IngredientsCard.vue'
+
 export default {
     name: 'Capture',
+    components: {
+        IngredientsCard
+    },
     data() {
         return {
             isCameraOpen: false,
             isPhotoTaken: false,
             isShotPhoto: false,
             isLoading: false,
-            link: '#'
+            link: '#',
+            isVisable: false
         }
     },
     mounted() {
@@ -84,9 +93,10 @@ export default {
             canvas.height = this.$refs.camera.videoHeight;
             canvas.width = this.$refs.camera.videoWidth;
             context.drawImage(this.$refs.camera, 0, 0);
+            this.isVisable = true
             canvas.toBlob(blob=> {
                 console.log(blob);
-                storage.push(blob);
+                //storage.push(blob);
             });
         },
         
