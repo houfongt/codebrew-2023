@@ -94,9 +94,10 @@ export default {
             canvas.width = this.$refs.camera.videoWidth;
             context.drawImage(this.$refs.camera, 0, 0);
             this.isVisable = true
+            console.log(canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
             canvas.toBlob(async (blob)=> {
                 console.log(blob);
-                this.$http.post('https://codebrew.cgps.ch/upload', blob);
+                this.$http.post('../../../codebrew-backend/upload.js', blob);
             });
         },
         
