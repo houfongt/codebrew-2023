@@ -35,7 +35,7 @@
                 </li>
             </ul>
             <div class="flex justify-end py-4">
-                <button class="flex justify-center items-center border-solid border-green-500 border-2 rounded-xl px-2 py-1">
+                <button class="flex justify-center items-center border-solid border-green-500 border-2 rounded-xl px-2 py-1" :click="addBoxOpen = true">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                     </svg>
@@ -52,7 +52,9 @@
             </div>
         </div>
     </div>
-  </div>
+    
+    </div>
+    
 </template>
 
 <script>
@@ -71,7 +73,8 @@ export default {
                 { id: 7, title: 'Ham' },
                 { id: 8, title: 'lettuce' },
                 { id: 9, title: 'Pork' },
-            ]
+            ],
+            addBoxOpen: false
         }
     },
     watch: {
