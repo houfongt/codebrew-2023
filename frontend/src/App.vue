@@ -3,9 +3,9 @@
       name: 'App',
       mounted() {
          if (this.$store.state.introPageShown != true) {
-            this.$router.push('/Welcome')
+            //this.$router.push('/Welcome')
          } else {
-            this.$router.push('/')
+            //this.$router.push('/')
          }
       }
    }

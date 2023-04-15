@@ -4,7 +4,9 @@ import { defineSecret } from 'firebase-functions/params'
 const googleApiKey = defineSecret('codebrew-2023');
 // // Create and deploy your first functions
 // // https://firebase.google.com/docs/functions/get-started
-//
+
+
+// Send User image to Google Cloud Vision API for object recognizion
 export const orc = functions.runWith({ minInstances: 1, secrets: [googleApiKey] }).https.onCall(async (data, context) => {
     const client = new vision.ImageAnnotatorClient();
 
