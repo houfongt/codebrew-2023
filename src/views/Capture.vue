@@ -6,7 +6,7 @@
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Meal Magic</p>
         </div>
         <div class="absolute top-5 right-5 z-50">
-            <button @click="toggleCamera(); isVisable = false" class="bg-black/50 rounded-xl py-2 px-4 mt-8">
+            <button @click="toggleCamera(); isVisable = false; this.$router.push('/')" class="bg-black/50 rounded-xl py-2 px-4 mt-8">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -65,7 +65,6 @@ export default {
                 if (this.cameraUnavailble !== true) {
                     this.stopCameraStream();
                 }
-                this.$router.push('/')
                 this.store.fetchingData = true
             } else {
                 this.isCameraOpen = true;
@@ -106,6 +105,7 @@ export default {
             }
       
             this.isPhotoTaken = !this.isPhotoTaken;
+            this.toggleCamera()
             const canvas = document.querySelector("canvas")
             const context = this.$refs.canvas.getContext('2d');
             canvas.height = this.$refs.camera.videoHeight;
@@ -122,9 +122,16 @@ export default {
                        const functions = getFunctions();
                        const orc = httpsCallable(functions, 'orc');
                        orc({ text: url }).then((result) => {
-                         console.log(result.data.items);
-                         this.store.fetchingData = false
-                         this.store.items = result.data.items
+                            console.log(result.data.items);
+                            this.store.items = result.data.items
+                            const res = '{"finals":["apple","turkey","chocolate"]}';
+                            const finals = JSON.parse(res).finals;
+                            let finalResults = []
+                            for (let i = 0; i < finals.length; i++) {
+                                finalResults.push({id: i, title: finals[i] })
+                            }
+                            this.store.items = finalResults;
+                            this.store.fetchingData = false
                         })
                     });
                 }) 

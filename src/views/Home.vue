@@ -2,10 +2,8 @@
     <Title title="Meal Magic" />
     <div class="flex flex-col justify-between items-center font-Poppins">
         <ul class="my-[37px] w-full px-8">
-            <li class="bg-white shadow-xl rounded-2xl p-8 flex flex-row justify-evenly items-center">
-                <div>
-                    Pic here
-                </div>
+            <li class="bg-white shadow-xl rounded-2xl p-8 flex flex-row justify-start items-center">
+                
                 <div>
                     <p class="text-3xl my-4">Recipe Title</p>
                     <p class="my-4">Some eggs</p>

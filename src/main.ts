@@ -4,7 +4,7 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-
+import store from './state/index'
 import router from './router'
 
 // Import the functions you need from the SDKs you need
@@ -36,5 +36,6 @@ const app = createApp({
 
 app.use(router)
 app.use(VueAxios, axios)
+app.use(store)
 
 app.mount('#app')
