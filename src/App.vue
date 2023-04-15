@@ -12,7 +12,9 @@
 </script>
 
 <template>
-   <router-view/>
+   <div class="select-none cont02">
+      <router-view/>
+   </div>
 </template>
 
 
