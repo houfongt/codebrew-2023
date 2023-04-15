@@ -128,7 +128,7 @@ export default {
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify(result.data.items)
                             };
-                            fetch("https://upload1.cgps.ch/", requestOptions).then(response => response.json()).then(data => {
+                            fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
                                 console.log(data);
                             });
                             const res = '{"finals":["apple","turkey","chocolate"]}';
