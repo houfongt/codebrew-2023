@@ -122,8 +122,15 @@ export default {
                        const functions = getFunctions();
                        const orc = httpsCallable(functions, 'orc');
                        orc({ text: url }).then((result) => {
-                            console.log(result.data.items);
-                            this.store.items = result.data.items
+                            console.log(JSON.stringify(result.data.items));
+                            const requestOptions = {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(result.data.items)
+                            };
+                            fetch("https://upload1.cgps.ch/", requestOptions).then(response => response.json()).then(data => {
+                                console.log(data);
+                            });
                             const res = '{"finals":["apple","turkey","chocolate"]}';
                             const finals = JSON.parse(res).finals;
                             let finalResults = []
