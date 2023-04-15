@@ -28,7 +28,7 @@ export default {
     name: 'Home',
     components: {
         Title
-    }
+    },
 }
 </script>
 

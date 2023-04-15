@@ -25,6 +25,7 @@
 
 <script>
 import Title from '../components/Title.vue'
+import { store } from '../store'
 export default {
     name: 'RecipeResult',
     components: {
@@ -37,15 +38,15 @@ export default {
         }
     },
     mounted() {
-        setTimeout(() => {
-           this.dataReady = true
-           let msg = '<strong>Chicken Pasta with Grapes</strong></br></br>Ingredients:</br>- 2 chicken breasts</br>- 2 cups of grapes</br>- 2 cups of milk</br>- 2 cups of cooked pasta</br>- Salt and pepper to taste</br></br>Instructions:</br>1. Preheat oven to 350°F (175°C)</br>2. Place chicken breasts in an oven-safe dish.</br>3. Pour milk over chicken and season with salt and pepper.</br>4. Bake in preheated oven for 25 minutes, or until chicken is cooked through.</br>5. Meanwhile, cook pasta according to package instructions.</br>6. Once chicken is cooked, cut into cubes.</br>7. In a large bowl, combine cooked pasta, chicken cubes and grapes.</br>8. Stir until all ingredients are combined.</br>9. Serve warm with bread. Enjoy!'
-           this.data = msg
-           const regex = /\b<strong>\b .*/;
-            console.log(msg.match(regex));
-            
-        }, 3000);
-        
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ food_items: this.store.items})
+        };
+        fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
+            this.data = data
+            this.dataReady = true
+        });
     },
     methods: {
         save() {

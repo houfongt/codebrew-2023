@@ -122,9 +122,8 @@ export default {
                        const functions = getFunctions();
                        const orc = httpsCallable(functions, 'orc');
                        orc({ text: url }).then((result) => {
-                            console.log(JSON.stringify(result.data.items));
-                            result.data.items[0] = 'Apple'
-                            console.log(result.data.items);
+                            result.data.items[0] = 'Chocolate'
+                            //console.log(result.data.items);
                             const requestOptions = {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },

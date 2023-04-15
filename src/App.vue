@@ -2,8 +2,10 @@
    export default {
       name: 'App',
       mounted() {
-         if (this.$store.state.introPageShown !== true) {
-            //this.$router
+         if (this.$store.state.introPageShown != true) {
+            //this.$router.push('/Welcome')
+         } else {
+            //this.$router.push('/')
          }
       }
    }
