@@ -2,11 +2,11 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.jepsc.codebrew23',
-  appName: 'magic-meal',
+  appName: 'Meal Magic',
   webDir: 'dist',
   bundledWebRuntime: false,
   "server": {
-    "url": "https://aesthetic-marshmallow-71934e.netlify.app/",
+    "url": "https://codebrew.cgps.ch/",
     "cleartext": true
   },
 };
