@@ -129,16 +129,16 @@ export default {
                                 body: JSON.stringify(result.data.items)
                             };
                             fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
-                                console.log(data);
+                                const finals = JSON.parse(data).finals;
+                                let finalResults = []
+                                for (let i = 0; i < finals.length; i++) {
+                                    finalResults.push({id: i, title: finals[i] })
+                                }
+                                this.store.items = finalResults;
+                                this.store.fetchingData = false
                             });
-                            const res = '{"finals":["apple","turkey","chocolate"]}';
-                            const finals = JSON.parse(res).finals;
-                            let finalResults = []
-                            for (let i = 0; i < finals.length; i++) {
-                                finalResults.push({id: i, title: finals[i] })
-                            }
-                            this.store.items = finalResults;
-                            this.store.fetchingData = false
+                           // const res = '{"finals":["apple","turkey","chocolate"]}';
+                            
                         })
                     });
                 }) 
