@@ -105,7 +105,7 @@ export default {
             }
       
             this.isPhotoTaken = !this.isPhotoTaken;
-            this.toggleCamera()
+            //this.toggleCamera()
             const canvas = document.querySelector("canvas")
             const context = this.$refs.canvas.getContext('2d');
             canvas.height = this.$refs.camera.videoHeight;
