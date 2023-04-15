@@ -48,11 +48,11 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
     <key>NSCameraUsageDescription</key>
-    <string>Quahk 需要使用你的攝像頭來拍照，例如拍攝「回憶」封面照片。</string>
+    <string>Meal Magic would like to access your camera in order to be able to scan foods.</string>
     <key>NSContactsUsageDescription</key>
-    <string>This Application needs access to your contacts in order to be able to call them.</string>
+    <string>Meal Magic needs access to your contacts in order to be able to call them.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>This Application uses your microphone to make calls.</string>
+    <string>Meal Magic uses your microphone to make calls.</string>
     <key>UseManualLayoutRenderer</key>
     <true/>
     <key>ManualInitAudioDevice</key>
