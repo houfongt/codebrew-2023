@@ -1,6 +1,7 @@
 <template>
-    <Title title="Meal Magic" />
+    <Title title="Recipes" />
     <div class="flex flex-col justify-between items-center font-Poppins">
+        <!--
         <ul class="my-[37px] w-full px-8">
             <li class="bg-white shadow-xl rounded-2xl p-8 flex flex-row justify-start items-center">
                 
@@ -10,6 +11,7 @@
                 </div>
             </li>
         </ul>
+        --->
         <router-link style="-webkit-touch-callout: none"  :to="{ name: 'Capture'}">
             <button class="bg-gradient-to-t from-green-700 to-green-400 flex justify-center items-center p-4 rounded-3xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6 mr-2">

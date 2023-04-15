@@ -1,11 +1,8 @@
 <template>
     <div class="flex flex-col justify-center items-center font-Poppins">
         <p class="m-9 font-bold text-4xl">{{ title }}</p>
-        <img :src="getImageUrl()" alt="Intro Pictures" class="m-16" />
-        
-        <div class="flex flex-col justify-center items-center">
-            <p class="text-xl m-4">{{ context }}</p>
-        </div>
+        <img :src="getImageUrl()" alt="Intro Pictures" class="m-16 block" />
+        <p class="text-xl px-8 text-center w-auto">{{ context }}</p>
     </div>
 </template>
 
