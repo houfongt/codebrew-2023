@@ -105,7 +105,9 @@ export default {
             }
       
             this.isPhotoTaken = !this.isPhotoTaken;
-            //this.toggleCamera()
+            if (this.cameraUnavailble !== true) {
+                this.stopCameraStream();
+            }
             const canvas = document.querySelector("canvas")
             const context = this.$refs.canvas.getContext('2d');
             canvas.height = this.$refs.camera.videoHeight;
@@ -116,7 +118,6 @@ export default {
                 const storage = getStorage();
                 let path = `codebrew-2023-orc/`;
                 const fileName = this.makeid(12);
-                console.log(fileName);
                 uploadBytes(ref(storage, `${path}/${fileName}`), blob).then((snapshot) => {
                     getDownloadURL(ref(storage, `${path}/${fileName}`)).then(async (url) => {
                        const functions = getFunctions();
@@ -143,17 +144,10 @@ export default {
                                     this.store.fetchingData = false
                                 }
                             });
-                           // const res = '{"finals":["apple","turkey","chocolate"]}';
-                            
                         })
                     });
                 }) 
             });
-        
-            setTimeout(() => {
-                
-                
-            }, 5000);
         },
         makeid(length) {
             let result = '';
