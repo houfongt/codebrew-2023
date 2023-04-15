@@ -122,7 +122,7 @@ export default {
                        const functions = getFunctions();
                        const orc = httpsCallable(functions, 'orc');
                        orc({ text: url }).then((result) => {
-                            result.data.items[0] = 'Chocolate'
+                            
                             //console.log(result.data.items);
                             const requestOptions = {
                                 method: "POST",
@@ -131,12 +131,17 @@ export default {
                             };
                             fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
                                 const finals = JSON.parse(data).finals;
-                                let finalResults = []
-                                for (let i = 0; i < finals.length; i++) {
-                                    finalResults.push({id: i, title: finals[i] })
+                                if (finals !== [] || finals !== '') {
+                                    let finalResults = []
+                                    for (let i = 0; i < finals.length; i++) {
+                                        finalResults.push({id: i, title: finals[i] })
+                                    }
+                                    this.store.items = finalResults;
+                                    this.store.fetchingData = false
+                                } else {
+                                    this.store.items = [];
+                                    this.store.fetchingData = false
                                 }
-                                this.store.items = finalResults;
-                                this.store.fetchingData = false
                             });
                            // const res = '{"finals":["apple","turkey","chocolate"]}';
                             
