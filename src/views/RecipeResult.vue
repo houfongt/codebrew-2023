@@ -34,7 +34,8 @@ export default {
     data() {
         return {
             dataReady: false,
-            data: ''
+            data: '',
+            store
         }
     },
     mounted() {
