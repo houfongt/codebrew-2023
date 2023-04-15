@@ -128,7 +128,7 @@ export default {
                             const requestOptions = {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify(result.data.items)
+                                body: JSON.stringify({ food_items: result.data.items})
                             };
                             fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
                                 const finals = JSON.parse(data).finals;
