@@ -147,7 +147,7 @@ export default {
                         })
                     });
                 }) 
-            });
+            }); 
         },
         makeid(length) {
             let result = '';
