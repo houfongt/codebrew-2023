@@ -1,17 +1,16 @@
 <template>
     <Title title="Meal Magic" />
     <div class="flex flex-col justify-between items-center font-Poppins">
-        <!--
         <ul class="my-[37px] w-full px-8">
             <li class="bg-white shadow-xl rounded-2xl p-8 flex flex-row justify-start items-center">
                 
                 <div>
-                    <p class="text-3xl my-4">Recipe Title</p>
-                    <p class="my-4">Some eggs</p>
+                    <p class="text-3xl my-4">Sorry...</p>
+                    <p class="my-4">Hi there, thanks for trying out the Meal Magic WebApp. As the hackathon has officially concluded, we are shutting down our server in order to save some money. However, we're planning to continue working on this project, so stay tuned! We will be back soon!</p>
+                    <p>(You can try playing around with the UI (I built so hard on that) but will prob end up with an infinite loop lol)</p>
                 </div>
             </li>
         </ul>
-        --->
         <router-link style="-webkit-touch-callout: none"  :to="{ name: 'Capture'}">
             <button class="bg-gradient-to-t from-green-700 to-green-400 flex justify-center items-center p-4 rounded-3xl">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6 mr-2">
