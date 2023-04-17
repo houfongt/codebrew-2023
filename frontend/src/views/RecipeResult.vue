@@ -5,7 +5,7 @@
         <div v-html="data" class="w-full px-8 font-Poppins"></div>
         <div class="flex flex-row justify-center items-center">
         <router-link style="-webkit-touch-callout: none"  :to="{ name: 'Home'}">
-            <button class="bg-gradient-to-t from-green-700 to-green-400 flex justify-center items-center p-4 rounded-3xl my-[37px]" @click="save()">
+            <button class="bg-gradient-to-t from-green-700 to-green-400 flex justify-center items-center p-4 rounded-3xl my-[37px]" @click="save(); store.items = []">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -44,7 +44,9 @@ export default {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ food_items: this.store.items})
         };
-        fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
+        fetch("https://codebrew.cgps.ch/upload2", requestOptions).then(response => response.json()).then(data => {
+            console.log(JSON.parse(data));
+            data = this.JSON_parse(data, true)
             this.data = data
             this.dataReady = true
         });
@@ -54,6 +56,14 @@ export default {
             //this.data = this.data
             const regex = /\b<strong>\b <\/strong>*/;
             console.log(this.data.match(regex));
+        },
+        JSON_parse(s, emit_unicode) {
+            let json = JSON.parse(s).recipe;
+            return emit_unicode ? json : json.replace(/[\u007f-\uffff]/g,
+            function(c) { 
+                return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
+            }
+            );
         }
     }
 }

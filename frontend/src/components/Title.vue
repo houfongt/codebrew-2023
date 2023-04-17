@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row justify-between items-center w-full px-8 pt-20 pb-8 md:pt-8 font-Poppins">
+    <div class="flex flex-row justify-between items-center w-full p-8 font-Poppins">
             <p class="text-3xl font-bold">{{ title }}</p>
             <button class="hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

@@ -6,7 +6,7 @@
             <p class="text-2xl text-white bg-black/50 rounded-xl py-2 px-4 mt-8">Meal Magic</p>
         </div>
         <div class="absolute top-8 md:top-5 right-5 z-50">
-            <button @click="toggleCamera(); isVisable = false; this.$router.push('/')" class="bg-black/50 rounded-xl py-2 px-4 mt-8">
+            <button @click="toggleCamera(); isVisable = false; store.items = []; this.$router.push('/')" class="bg-black/50 rounded-xl py-2 px-4 mt-8">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -106,7 +106,7 @@ export default {
       
             this.isPhotoTaken = !this.isPhotoTaken;
             if (this.cameraUnavailble !== true) {
-                this.stopCameraStream();
+                //this.stopCameraStream();
             }
             const canvas = document.querySelector("canvas")
             const context = this.$refs.canvas.getContext('2d');
@@ -132,13 +132,19 @@ export default {
                             };
                             fetch("https://codebrew.cgps.ch/upload1", requestOptions).then(response => response.json()).then(data => {
                                 const finals = JSON.parse(data).finals;
-                                if (finals !== [] || finals !== '') {
+				console.log(typeof finals !== 'undefined')
+                                if (finals !== [] || finals !== '') { 
+					if (typeof finals !== 'undefined') {
                                     let finalResults = []
                                     for (let i = 0; i < finals.length; i++) {
                                         finalResults.push({id: i, title: finals[i] })
                                     }
                                     this.store.items = finalResults;
                                     this.store.fetchingData = false
+				} else {
+					this.store.items = []
+					this.store.fetchingData = false
+				}
                                 } else {
                                     this.store.items = [];
                                     this.store.fetchingData = false
